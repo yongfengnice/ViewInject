@@ -15,14 +15,13 @@ public class ViewInject {
 
     /**
      * 实例化Activity里面的View成员变量
+     *
      * @param activity
      */
     public static void inject(Activity activity) {
         if (activity == null) return;
         Field[] fields = activity.getClass().getDeclaredFields();
-        Field field;
-        for (int i = 0; i < fields.length; i++) {
-            field = fields[i];
+        for (Field field : fields) {
             if (!field.isAnnotationPresent(ViewId.class)) continue;
             ViewId resId = field.getAnnotation(ViewId.class);
             if (resId != null) {
@@ -38,6 +37,7 @@ public class ViewInject {
 
     /**
      * 实例化Fragment里面的View成员变量
+     *
      * @param fragment
      */
     public static void inject(Fragment fragment) {
@@ -46,9 +46,7 @@ public class ViewInject {
         if (view == null)
             throw new NullPointerException("the fragment's view is null, please call after onActivityCreated() method");
         Field[] fields = fragment.getClass().getDeclaredFields();
-        Field field;
-        for (int i = 0; i < fields.length; i++) {
-            field = fields[i];
+        for (Field field : fields) {
             if (!field.isAnnotationPresent(ViewId.class)) continue;
             ViewId resId = field.getAnnotation(ViewId.class);
             if (resId != null) {
@@ -64,14 +62,13 @@ public class ViewInject {
 
     /**
      * 实例化一个自定义View里面的View成员变量
+     *
      * @param view
      */
     public static void inject(View view) {
         if (view == null) return;
         Field[] fields = view.getClass().getDeclaredFields();
-        Field field;
-        for (int i = 0; i < fields.length; i++) {
-            field = fields[i];
+        for (Field field : fields) {
             if (!field.isAnnotationPresent(ViewId.class)) continue;
             ViewId resId = field.getAnnotation(ViewId.class);
             if (resId != null) {
